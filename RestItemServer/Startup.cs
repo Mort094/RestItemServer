@@ -25,6 +25,20 @@ namespace RestItemServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(
+            options =>
+        {
+            options.AddPolicy("AllowSpeceficOrigin",
+                builder => builder.WithOrigins("localhost"));
+
+            options.AddPolicy("AllowAnyOrigin",
+              builder => builder.AllowAnyOrigin());
+
+            options.AddPolicy("AllowAnyOriginGetPost",
+                builder => builder.AllowAnyOrigin().WithMethods("GET", "POST"));
+        }
+        );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +57,9 @@ namespace RestItemServer
             {
                 endpoints.MapControllers();
             });
+            app.UseCors(
+                options => options.AllowAnyHeader().AllowAnyOrigin().WithMethods("GET", "PUT")
+                );
         }
     }
 }
