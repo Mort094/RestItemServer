@@ -32,24 +32,24 @@ namespace RestItemServer.Controllers
             return items;
         }
         [HttpGet]
-        [EnableCors("AllowAnyOrigin")]
         [Route("Name/{substring}")]
+        [EnableCors("AllowAnyOrigin")]
         public IEnumerable<Item> GetFromSubstring(String substring)
         {
             return items.FindAll(i => i.Name.Contains(substring));
         }
 
         [HttpGet]
-        [EnableCors("AllowAnyOrigin")]
         [Route("Quality/{substring}")]
+        [EnableCors("AllowAnyOrigin")]
         public IEnumerable<Item> GetQualityString(String substring)
         {
             return items.FindAll(i => i.Quality.Contains(substring));
         }
 
         [HttpGet]
-        [EnableCors("AllowAnyOrigin")]
         [Route("Search")]
+        [EnableCors("AllowAnyOrigin")]
         public IEnumerable<Item> GetWithFilter([FromQuery] FilterItem filter)
         {
             return items.FindAll(i => i.Quantity > filter.LowQuantity && i.Quantity < filter.HighQuantity);
@@ -89,8 +89,8 @@ namespace RestItemServer.Controllers
 
         // PUT api/<ItemsController>/5
         [HttpPut]
-        [EnableCors("AllowSpecifOrigin")]
         [Route("{id}")]
+        [EnableCors("AllowSpecifOrigin")]
         public void Put(int id, [FromBody] Item value)
         {
             Item item = Get(id);
@@ -105,8 +105,8 @@ namespace RestItemServer.Controllers
 
         // DELETE api/<ItemsController>/5
         [HttpDelete]
-        [DisableCors]
         [Route("{id}")]
+        [DisableCors]
         public void Delete(int id)
         {
             Item item = Get(id);
