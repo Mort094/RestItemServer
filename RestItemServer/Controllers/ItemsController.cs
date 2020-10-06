@@ -74,7 +74,7 @@ namespace RestItemServer.Controllers
         //[HttpGet]
         //[Route("{id}")]
         //[EnableCors("AllowAnyOrigin")]
-        public Item Get(int id)
+        private Item Get(int id)
         {
             return items.Find(i => i.Id == id);
         }
