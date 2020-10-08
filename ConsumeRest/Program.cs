@@ -9,7 +9,7 @@ namespace ConsumeRest
             RestWorker worker = new RestWorker();
             worker.Start();
 
-            Console.WriteLine();
+            Console.ReadLine();
         }
     }
 }
